@@ -20,6 +20,8 @@ namespace BookStoreApp.ViewModels
         public BooksViewModel(IBookService bookService)
         {
             this.bookService = bookService;
+            NavigateToAddBookCommand = new RelayCommand(NavigateToAddBook);
+            IsActive = true;
 
             if (bookService.GetBooks() is List<Book> books)
             {
@@ -28,9 +30,6 @@ namespace BookStoreApp.ViewModels
                     BooksList.Add(book);
                 }
             }
-
-            NavigateToAddBookCommand = new RelayCommand(NavigateToAddBook);
-            IsActive = true;
         }
 
         private async void NavigateToAddBook()

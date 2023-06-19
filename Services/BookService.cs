@@ -7,7 +7,7 @@ namespace BookStoreApp.Services
     {
         public const string FILE_NAME = "books.json";
 
-        private IFileSystem fileSystem;
+        private readonly IFileSystem fileSystem;
 
         public BookService(IFileSystem fileSystem)
         {
