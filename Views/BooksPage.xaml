@@ -82,10 +82,18 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Grid.Row="2"
-                Text="Add Book"
-                FontSize="Medium"
-                Command="{Binding NavigateToAddBookCommand}"
-                VerticalOptions="Fill" />
+        <HorizontalStackLayout Grid.Row="2" Spacing="10">
+            <Button Text="Add Book"
+                    FontSize="Medium"
+                    Command="{Binding NavigateToAddBookCommand}"
+                    VerticalOptions="Fill" />
+
+            <Button Text="Clear List"
+                    FontSize="Medium"
+                    Command="{Binding ClearListCommand}"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    VerticalOptions="Fill" />
+        </HorizontalStackLayout>
     </Grid>
 </ContentPage>

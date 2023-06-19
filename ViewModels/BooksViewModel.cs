@@ -17,12 +17,16 @@ namespace BookStoreApp.ViewModels
 
         public IRelayCommand NavigateToAddBookCommand { get; }
 
+        public IRelayCommand ClearListCommand { get; }
+
         public BooksViewModel(IBookService bookService)
         {
             this.bookService = bookService;
-            NavigateToAddBookCommand = new RelayCommand(NavigateToAddBook);
-            IsActive = true;
 
+            IsActive = true;
+            NavigateToAddBookCommand = new RelayCommand(NavigateToAddBook);
+            ClearListCommand = new RelayCommand(ClearList);
+            
             if (bookService.GetBooks() is List<Book> books)
             {
                 foreach (Book book in books)
@@ -35,6 +39,12 @@ namespace BookStoreApp.ViewModels
         private async void NavigateToAddBook()
         {
             await Shell.Current.GoToAsync(nameof(AddBookPage), true);
+        }
+
+        private void ClearList()
+        {
+            BooksList.Clear();
+            bookService.RemoveAllBooks();
         }
 
         protected override void OnActivated()
